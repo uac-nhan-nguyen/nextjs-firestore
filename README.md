@@ -1,4 +1,4 @@
-# Nextjs + Firestore
+# Nextjs + Firestore: just another flavor
 
 - [ ] Login with Firebase auth
 - [ ] Write / Read to Firestore
