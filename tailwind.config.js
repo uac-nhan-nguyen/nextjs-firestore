@@ -7,6 +7,12 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      'text-primary': 'var(--cds-text-primary)',
+      'link-primary': 'var(--cds-link-primary)',
+      'link-inverse': 'var(--cds-link-inverse)',
+      'ui-05': 'var(--cds-ui-05)',
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

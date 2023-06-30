@@ -14,10 +14,10 @@ export const signIn = async (email: string, password: string): Promise<[UserCred
       return [undefined, 'User not found'];
     }
     else if (e.code === "auth/invalid-email") {
-      return [undefined, 'Invalid Email'];
+      return [undefined, 'Invalid email'];
     }
     else if (e.code === "auth/wrong-password") {
-      return [undefined, 'Invalid Password'];
+      return [undefined, 'Invalid password'];
     }
     else {
       return [undefined, e.code];
@@ -27,12 +27,15 @@ export const signIn = async (email: string, password: string): Promise<[UserCred
 
 export const signUp = async (email: string, password: string): Promise<[UserCredential?, string?]> => {
   try {
-
     const r = await createUserWithEmailAndPassword(auth, email, password)
     return [r]
   } catch (e: any) {
     if (e.code === "auth/invalid-email") {
-      return [undefined, 'Invalid Email']
+      return [undefined, 'Invalid email']
+    }
+    else if (e.code === 'auth/email-already-in-use') {
+      return [undefined, 'Account already created']
+
     }
     else {
       console.error(e);

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.32.0",
+    "@carbon/themes": "^11.20.0",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -25,6 +26,7 @@
     "typescript": "4.7.4"
   },
   "devDependencies": {
+    "encoding": "^0.1.13",
     "sass": "^1.63.6"
   }
 }
