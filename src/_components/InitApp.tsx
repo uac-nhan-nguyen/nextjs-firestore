@@ -8,5 +8,7 @@ export const InitApp = () => {
     initTheme();
     initFirebase();
   }, []);
-  return <></>;
+  return <>
+  </>;
 };
+

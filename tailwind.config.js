@@ -7,6 +7,7 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    // https://v10.carbondesignsystem.com/guidelines/color/usage/
     colors: {
       'text-primary': 'var(--cds-text-primary)',
       'link-primary': 'var(--cds-link-primary)',

@@ -1,9 +1,18 @@
 import {auth} from "@/firebase/config";
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword, type UserCredential} from 'firebase/auth'
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword, type UserCredential, User} from 'firebase/auth'
+import {useEffect, useState} from "react";
 
-auth.onAuthStateChanged((user) => {
-  console.log("USER", user);
-});
+
+export const useUser = (): { user: User | null | undefined, loading: boolean } => {
+  const [user, setUser] = useState<User | null | undefined>(undefined);
+  useEffect(() => {
+    auth.onAuthStateChanged((value) => {
+      setUser(value);
+    });
+
+  })
+  return {user, loading: user === undefined};
+}
 
 export const signIn = async (email: string, password: string): Promise<[UserCredential?, string?]> => {
   try {

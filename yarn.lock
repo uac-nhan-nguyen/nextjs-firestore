@@ -45,6 +45,11 @@
     "@carbon/telemetry" "0.1.0"
     prop-types "^15.7.2"
 
+"@carbon/icons@^11.21.0":
+  version "11.21.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icons/-/icons-11.21.0.tgz#b8880d0b33120d5fcfc16e403a41be01c1e8722b"
+  integrity sha512-U07CJh49OLBhFccK57lwhEufnn6RzujHBFLJ+FDyGhjzmkyYWMuTcAlXINIX91kEjjhF28i2qhdLN4+m/A5gCg==
+
 "@carbon/layout@^11.15.0":
   version "11.15.0"
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-11.15.0.tgz#eb9929198912a36aa67e6a396580567dee5079c5"
@@ -693,6 +698,11 @@
   integrity sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==
   dependencies:
     tslib "^2.4.0"
+
+"@types/carbon__icons-react@^11.20.0":
+  version "11.20.0"
+  resolved "https://registry.yarnpkg.com/@types/carbon__icons-react/-/carbon__icons-react-11.20.0.tgz#c179d73d3db17e293e54ca568c8401fe57f72188"
+  integrity sha512-tGRW9rtEjOdh2puC1ltQ5LYqeL/fjqkYAuvCLkxuEO/8sh0dVhHqbLySvCzlH62304/r6Cw8ugW3484p52PJhA==
 
 "@types/long@^4.0.1":
   version "4.0.2"
