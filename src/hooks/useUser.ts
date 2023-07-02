@@ -1,6 +1,6 @@
-import {auth} from "@/firebase/config";
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword, type UserCredential, User} from 'firebase/auth'
-import {useEffect, useState} from "react";
+import { auth } from "@/firebase/config";
+import { signInWithEmailAndPassword, signOut as firebaseSignOut, sendPasswordResetEmail, createUserWithEmailAndPassword, type UserCredential, User } from 'firebase/auth'
+import { useEffect, useState } from "react";
 
 
 export const useUser = (): { user: User | null | undefined, loading: boolean } => {
@@ -12,7 +12,7 @@ export const useUser = (): { user: User | null | undefined, loading: boolean } =
     });
   })
 
-  return {user, loading: user === undefined};
+  return { user, loading: user === undefined };
 }
 
 export const signIn = async (email: string, password: string): Promise<[UserCredential?, string?]> => {
@@ -53,4 +53,24 @@ export const signUp = async (email: string, password: string): Promise<[UserCred
     }
   }
 
+}
+
+export const resetPassword = async (email: string): Promise<[string?]> => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return [];
+  } catch (e: any) {
+    console.error(e);
+    return [e.code]
+  }
+}
+
+export const signOut = async () => {
+  try {
+    await firebaseSignOut(auth);
+    return [];
+  } catch (e: any) {
+    console.error(e);
+    return [e.code]
+  } 
 }

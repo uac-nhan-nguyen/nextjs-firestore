@@ -1,12 +1,11 @@
-import {LoginCard} from "@/_views/LoginCard";
+import { LoginCard } from "@/_views/LoginCard";
 import Link from "next/link";
-import {ThemeSwitch} from "@/_components/ThemeSwitch";
 
 export default function Login() {
   return <>
-    <LoginCard/>
+    <LoginCard hrefAfterLogin="/admin" hrefSignUp="/signup" />
     <div className={'px-[1em] mt-[1em]'}>
-      <Link className={'no-underline text-text-primary'} href={'/signup'}>Does not have an account? Click <span className={'text-link-primary'}>here</span> to sign up.</Link>
+      <Link className={'no-underline text-text-primary'} href={'/reset-password'}>Forgot password? Click <span className={'text-link-primary'}>here</span></Link>
     </div>
   </>
 }

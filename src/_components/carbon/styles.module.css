@@ -1,8 +1,11 @@
 /*Utils*/
 .noSelect {
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 /*Button*/
@@ -30,8 +33,7 @@
 
 /* UI Shell */
 .UIShell {
-    background-color: var(--cds-background-inverse);
-    color: var(--cds-text-inverse);
+    background-color: var(--cds-layer-01);
 
     display: flex;
     align-items: center;
@@ -72,7 +74,7 @@
     min-height: calc(100vh - 72px - 46px);
 
     filter: blur(3px);
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 
     transition: all ease-out 200ms;
     pointer-events: all;
