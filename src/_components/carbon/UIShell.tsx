@@ -11,14 +11,22 @@ type SidenavMenu = {
   label?: string,
   children?: SidenavMenu[],
 }
+
+type User = {
+
+  email?: string,
+}
+
 export const UIShell = ({children, title, ...props}: PropsWithChildren & {
   title: string,
   sidebarMenus: SidenavMenu[],
+  user?: User,
 }) => {
   const [sidebarOpen, _sidebarOpen] = useState(false);
   return <>
     <Header title={title}
             sidebarOpen={sidebarOpen}
+            user={props.user}
             onBurgerClick={() => {
               _sidebarOpen(prev => !prev);
             }}/>
@@ -29,7 +37,7 @@ export const UIShell = ({children, title, ...props}: PropsWithChildren & {
   </>
 }
 
-const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurgerClick: () => void }) => {
+const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurgerClick: () => void, user?: User }) => {
   return <div className={c(styles.UIShell, styles.noSelect)}>
     <IconButton onClick={props.onBurgerClick}>
       {props.sidebarOpen ?
@@ -37,6 +45,8 @@ const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurg
         : <Menu size={32}/>}
     </IconButton>
     <div>{title}</div>
+    <div className={'flex-1'}/>
+    {props.user?.email && <div>{props.user.email}</div>}
   </div>
 }
 
@@ -49,7 +59,7 @@ const Sidenav = ({menus, show, ...props}: { show: boolean, onClose: () => void, 
       [styles.sidenavHide]: !show,
     })}>
       {menus.map((i, index) => {
-        return <Link href={i.href ?? ''}>
+        return <Link key={index} href={i.href ?? ''}>
           {i.label}
         </Link>
       })}

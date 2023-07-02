@@ -7,10 +7,11 @@ export const useUser = (): { user: User | null | undefined, loading: boolean } =
   const [user, setUser] = useState<User | null | undefined>(undefined);
   useEffect(() => {
     auth.onAuthStateChanged((value) => {
+      console.log('USER', user)
       setUser(value);
     });
-
   })
+
   return {user, loading: user === undefined};
 }
 
