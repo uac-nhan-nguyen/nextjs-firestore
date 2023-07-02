@@ -23,13 +23,14 @@ export const UIShell = ({children, title, ...props}: PropsWithChildren & {
               _sidebarOpen(prev => !prev);
             }}/>
     <Sidenav show={sidebarOpen}
+             onClose={() => _sidebarOpen(false)}
              menus={props.sidebarMenus}/>
     {children}
   </>
 }
 
 const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurgerClick: () => void }) => {
-  return <div className={c(styles.UIShell)}>
+  return <div className={c(styles.UIShell, styles.noSelect)}>
     <IconButton onClick={props.onBurgerClick}>
       {props.sidebarOpen ?
         <Close size={32}/>
@@ -39,14 +40,19 @@ const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurg
   </div>
 }
 
-const Sidenav = ({menus, show}: { show: boolean, menus: SidenavMenu[] }) => {
-  return <div className={c(styles.sidenav, {
-    [styles.sidenavHide]: !show,
-  })}>
-    {menus.map((i, index) => {
-      return <Link href={i.href ?? ''}>
-        {i.label}
-      </Link>
-    })}
-  </div>
+const Sidenav = ({menus, show, ...props}: { show: boolean, onClose: () => void, menus: SidenavMenu[] }) => {
+  return <>
+    <div className={c(styles.UIShellVar, styles.sidenavCover, {
+      [styles.sidenavCoverHide]: !show,
+    })} onClick={props.onClose}/>
+    <div className={c(styles.UIShellVar, styles.sidenav, {
+      [styles.sidenavHide]: !show,
+    })}>
+      {menus.map((i, index) => {
+        return <Link href={i.href ?? ''}>
+          {i.label}
+        </Link>
+      })}
+    </div>
+  </>
 }
