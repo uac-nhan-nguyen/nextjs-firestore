@@ -1,18 +1,38 @@
 @use '@carbon/react/index';
 @use '@carbon/themes/scss/themes';
 @use '@carbon/themes/scss/theme';
-
+@use '@carbon/themes/scss/tokens';
 
 :root {
   @include theme.theme(themes.$g10);
+
+  --button-h-sm: 32px;
+  --button-h-md: 40px;
+  --button-h-lg: 48px;
+  --button-h-xl: 64px;
+  --button-h-2xl: 80px;
 }
 
 [data-theme="dark"] {
   @include theme.theme(themes.$g90);
 }
+
 //[data-theme="g90"] {
 //  @include theme.theme(themes.$g90);
 //}
 //[data-theme="white"] {
 //  @include theme.theme(themes.$white);
 //}
+
+.button {
+  cursor: pointer;
+}
+
+
+
+.button-border {
+}
+
+.button-border-ghost:hover {
+  background: tokens.$background-hover
+}

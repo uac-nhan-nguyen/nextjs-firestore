@@ -1,0 +1,54 @@
+.iconButton {
+    cursor: pointer;
+    min-width: var(--button-h-md);
+    min-height: var(--button-h-md);
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    transition: all ease-out 200ms;
+}
+
+.iconButton:hover {
+    background-color: var(--cds-background-hover);
+}
+
+.iconButtonLg {
+    min-width: var(--button-h-lg);
+    min-height: var(--button-h-lg);
+}
+
+
+/* UI Shell */
+.UIShell {
+    background-color: var(--cds-background-inverse);
+    color: var(--cds-text-inverse);
+
+    display: flex;
+    align-items: center;
+
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.sidenav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+
+    min-height: calc(100vh - 72px - 46px);
+
+    background-color: var(--cds-layer-01);
+    min-width: 256px;
+
+    padding: 1rem;
+
+    transition: all ease-out 200ms;
+    transform: translate(0,0);
+
+
+}
+.sidenavHide {
+    transform: translate(-100%,0);
+}
