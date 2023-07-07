@@ -49,20 +49,18 @@ const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurg
     <div>{title}</div>
     <div className={'flex-1'}/>
     {props.user?.email &&
-      <Layer>
-        <DropdownOnHover
-          button={<>
-            <IconButton>
-              <User size={24}/>
-            </IconButton>
-          </>}
-        >
-          <div className={styles.dropdownContainer}>
-            <Button kind={'ghost'} size={'sm'}>{props.user.email}</Button>
-            <Button kind={'ghost'} size={'sm'}>Logout</Button>
-          </div>
-        </DropdownOnHover>
-      </Layer>
+      <DropdownOnHover
+        button={<>
+          <IconButton>
+            <User size={24}/>
+          </IconButton>
+        </>}
+      >
+        <div className={styles.dropdownContainer}>
+          <Button kind={'ghost'} size={'sm'}>{props.user.email}</Button>
+          <Button kind={'ghost'} size={'sm'}>Logout</Button>
+        </div>
+      </DropdownOnHover>
     }
   </div>
 }

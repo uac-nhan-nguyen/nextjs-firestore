@@ -5,12 +5,15 @@ import React, {PropsWithChildren, useRef, useState} from "react";
  * Click button to close
  */
 export const DropdownOnClick = <T, >(props: PropsWithChildren & {
+  alignLeft?: true,
+  title?: string,
   button: React.ReactElement,
 }) => {
   const [show, setShow] = useState(false)
 
   return <>
     <div
+      title={props.title}
       className={'DropdownOnClick'}
       style={{
         position: 'relative'
@@ -39,7 +42,8 @@ export const DropdownOnClick = <T, >(props: PropsWithChildren & {
         }}
         style={{
           position: 'absolute',
-          right: 0,
+          right: props.alignLeft ? undefined : 0,
+          left: props.alignLeft ? 0 : undefined,
 
           transition: 'all ease 0.3s',
           pointerEvents: show ? 'all' : 'none',
@@ -57,13 +61,17 @@ export const DropdownOnClick = <T, >(props: PropsWithChildren & {
  * Click button to close
  */
 export const DropdownOnHover = <T, >(props: PropsWithChildren & {
+  title?: string,
+  className?: string,
+  alignLeft?: true,
   button: React.ReactElement,
 }) => {
   const [show, setShow] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
   return <>
-    <div className={'DropdownOnHover'}
+    <div className={'DropdownOnHover ' + props.className??''}
+         title={props.title}
          style={{
            position: 'relative'
          }}
@@ -85,7 +93,8 @@ export const DropdownOnHover = <T, >(props: PropsWithChildren & {
            }}
            style={{
              position: 'absolute',
-             right: 0,
+             right: props.alignLeft ? undefined : 0,
+             left: props.alignLeft ? 0 : undefined,
 
              transition: 'all ease 0.3s',
              pointerEvents: show ? 'all' : 'none',
