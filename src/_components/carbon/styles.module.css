@@ -40,7 +40,6 @@
 
     padding: 1rem;
     gap: 1rem;
-
 }
 
 .UIShellVar {
@@ -50,7 +49,7 @@
 
 .sidenav {
     position: fixed;
-    top: 72px;
+    top: var(--header);
     left: 0;
 
     min-height: calc(100vh - var(--header) - var(--footer));
@@ -66,14 +65,13 @@
 
 .sidenavCover {
     position: fixed;
-    top: 72px;
+    top: var(--header);
     left: 0;
     cursor: w-resize;
 
     width: 100vw;
-    min-height: calc(100vh - 72px - 46px);
+    min-height: calc(100vh - var(--header) - 46px);
 
-    filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.2);
 
     transition: all ease-out 200ms;
@@ -88,4 +86,14 @@
 
 .sidenavHide {
     transform: translate(-100%, 0);
+}
+
+.dropdownContainer {
+    display: grid;
+    background-color: var(--cds-layer-01);
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);
+}
+
+.dropdownContainer > * {
+    width: 100%
 }

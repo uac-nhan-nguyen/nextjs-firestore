@@ -28,7 +28,8 @@ export default function Layout() {
         email: user.email || undefined
       } || undefined}
       sidebarMenus={[
-        { label: 'Pages', href: '/admin/pages' }
+        { label: 'Pages', href: '/admin/pages' },
+        { label: '_Components', href: '/components' }
       ]}>
       children
     </UIShell>
