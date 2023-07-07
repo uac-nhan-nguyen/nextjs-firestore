@@ -1,6 +1,6 @@
 'use client'
-import {PropsWithChildren, useState} from "react";
-import {Menu, Close, User} from '@carbon/icons-react';
+import {PropsWithChildren, ReactNode, useState} from "react";
+import {Menu, Close, User, ChevronRight} from '@carbon/icons-react';
 import {IconButton} from "@/_components/carbon/IconButton";
 import c from 'classnames'
 import styles from './styles.module.css';
@@ -8,35 +8,42 @@ import Link from "next/link";
 import {MenuButton, MenuItem, Layer, Button} from '@carbon/react'
 import {DropdownOnClick, DropdownOnHover} from "@/_components/basic/Dropdown";
 
-type SidenavMenu = {
-  href?: string,
-  label?: string,
-  children?: SidenavMenu[],
-}
-
 type User = {
-
   email?: string,
 }
 
 export const UIShell = ({children, title, ...props}: PropsWithChildren & {
   title: string,
-  sidebarMenus: SidenavMenu[],
   user?: User,
+  sidebar: ReactNode,
 }) => {
-  const [sidebarOpen, _sidebarOpen] = useState(false);
-  return <>
+  const [sidebarOpen, _sidebarOpen] = useState('hide');
+  return <div className={styles.UIShellVar}>
     <Header title={title}
-            sidebarOpen={sidebarOpen}
+            sidebarOpen={sidebarOpen !== 'hide'}
             user={props.user}
             onBurgerClick={() => {
-              _sidebarOpen(prev => !prev);
+              _sidebarOpen(prev => prev === 'hide' ? 'show' : 'hide');
             }}/>
-    <Sidenav show={sidebarOpen}
-             onClose={() => _sidebarOpen(false)}
-             menus={props.sidebarMenus}/>
-    {children}
-  </>
+    <Sidenav show={sidebarOpen !== 'hide'}
+             onClose={() => _sidebarOpen('hide')}
+             onMouseLeave={() => _sidebarOpen(prev => prev === 'showHover' ? 'hide' : prev)}
+    >
+      {props.sidebar}
+    </Sidenav>
+    {/*Hover to show sidebar*/}
+
+    <div className={styles.sidenavHoverPadding}
+         onMouseEnter={() => _sidebarOpen(prev => prev === 'hide' ? 'showHover' : prev)}
+    >
+      <ChevronRight size={16}/>
+    </div>
+
+    <div className={c(styles.pageContainer)}
+    >
+      {children}
+    </div>
+  </div>
 }
 
 const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurgerClick: () => void, user?: User }) => {
@@ -65,19 +72,21 @@ const Header = ({title, ...props}: { title: string, sidebarOpen: boolean, onBurg
   </div>
 }
 
-const Sidenav = ({menus, show, ...props}: { show: boolean, onClose: () => void, menus: SidenavMenu[] }) => {
-  return <>
-    <div className={c(styles.UIShellVar, styles.sidenavCover, {
+const Sidenav = ({children, show, ...props}: PropsWithChildren & {
+  show: boolean,
+  onClose: () => void,
+  onMouseLeave?: () => void,
+}) => {
+  return <div>
+    <div className={c(styles.sidenavCover, {
       [styles.sidenavCoverHide]: !show,
     })} onClick={props.onClose}/>
-    <div className={c(styles.UIShellVar, styles.sidenav, {
+    <div className={c(styles.sidenav, {
       [styles.sidenavHide]: !show,
-    })}>
-      {menus.map((i, index) => {
-        return <Link key={index} href={i.href ?? ''}>
-          {i.label}
-        </Link>
-      })}
+    })}
+         onMouseLeave={props.onMouseLeave}
+    >
+      {children}
     </div>
-  </>
+  </div>
 }

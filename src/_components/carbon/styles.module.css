@@ -32,6 +32,12 @@
 
 
 /* UI Shell */
+.UIShellVar {
+    --header: 72px;
+    --footer: 46px;
+    --padding: 16px;
+}
+
 .UIShell {
     background-color: var(--cds-layer-01);
 
@@ -42,9 +48,9 @@
     gap: 1rem;
 }
 
-.UIShellVar {
-    --header: 72px;
-    --footer: 46px;
+
+.pageContainer {
+    padding: var(--padding)
 }
 
 .sidenav {
@@ -61,6 +67,23 @@
 
     transition: all ease-out 200ms;
     transform: translate(0, 0);
+}
+
+.sidenavHoverPadding {
+    position: fixed;
+    /*top: var(--header);*/
+    top: 50%;
+    left: 0;
+
+    width: var(--padding);
+    /*min-height: calc(100vh - var(--header) - var(--footer));*/
+    height: var(--header);
+
+    display: grid;
+    align-items: center;
+
+    background-color: var(--cds-layer-01);
+    /*opacity: 0.2;*/
 }
 
 .sidenavCover {
