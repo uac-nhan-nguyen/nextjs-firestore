@@ -16,6 +16,7 @@ export const UIShell = ({children, title, ...props}: PropsWithChildren & {
   title: string,
   user?: User,
   sidebar: ReactNode,
+  hideSidebarHoverButton?: true,
 }) => {
   const [sidebarOpen, _sidebarOpen] = useState('hide');
   return <div className={styles.UIShellVar}>
@@ -33,11 +34,13 @@ export const UIShell = ({children, title, ...props}: PropsWithChildren & {
     </Sidenav>
     {/*Hover to show sidebar*/}
 
-    <div className={styles.sidenavHoverPadding}
-         onMouseEnter={() => _sidebarOpen(prev => prev === 'hide' ? 'showHover' : prev)}
-    >
-      <ChevronRight size={16}/>
-    </div>
+    {!props.hideSidebarHoverButton &&
+      <div className={styles.sidenavHoverPadding}
+           onMouseEnter={() => _sidebarOpen(prev => prev === 'hide' ? 'showHover' : prev)}
+      >
+        <ChevronRight size={16}/>
+      </div>
+    }
 
     <div className={c(styles.pageContainer)}
     >
@@ -84,6 +87,7 @@ const Sidenav = ({children, show, ...props}: PropsWithChildren & {
     <div className={c(styles.sidenav, {
       [styles.sidenavHide]: !show,
     })}
+         onClick={props.onClose}
          onMouseLeave={props.onMouseLeave}
     >
       {children}

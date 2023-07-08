@@ -1,11 +1,20 @@
 'use client'
 import {UIShell} from "@/_components/carbon/UIShell";
 import {useUser} from "@/hooks/useUser";
-import {useEffect} from "react";
+import {PropsWithChildren, useEffect} from "react";
 import {useRouter} from 'next/navigation'
 import {Button} from "@carbon/react";
+import Link from "next/link";
 
-export default function Layout() {
+const SIDEBAR_MENUS: {
+  label: string,
+  href: string,
+}[] = [
+  {label: 'Pages', href: '/admin/pages'},
+  {label: 'Blogs', href: '/admin/blogs'}
+]
+
+export default function Layout({children}: PropsWithChildren) {
   const {user} = useUser();
   const router = useRouter()
 
@@ -29,11 +38,14 @@ export default function Layout() {
                email: user.email || undefined
              } || undefined}
              sidebar={<>
-               <Button kind={'ghost'}>Pages</Button>
-               <Button kind={'ghost'}>Components</Button>
+               {SIDEBAR_MENUS.map(i => {
+                 return <Link key={i.href} href={i.href}>
+                   <Button kind={'ghost'}>{i.label}</Button>
+                 </Link>
+               })}
              </>}
     >
-      children
+      {children}
     </UIShell>
   </>
 }
