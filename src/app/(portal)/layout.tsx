@@ -19,7 +19,7 @@ export default function RootLayout({
 
       <div
         className={'fixed bottom-0 flex justify-end border-ui-05 border-solid border-0 border-t-2 w-full items-center'}>
-        <Link href={'/components'} target={'_blank'}>
+        <Link href={'/admin/components'} target={'_blank'}>
           <IconButton className={'no-underline text-text-primary'}>
             <Application size={24}/>
           </IconButton>
