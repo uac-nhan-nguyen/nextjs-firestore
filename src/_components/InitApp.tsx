@@ -12,3 +12,11 @@ export const InitApp = () => {
   </>;
 };
 
+
+// Ignore 
+const _error = console.error;
+console.error = (...e) => {
+  if (!(e.toString().startsWith('Warning: '))){
+    _error(...e)
+  }
+}
