@@ -13,13 +13,7 @@ export const Header = ({title, ...props}: {
   onLogout?: () => void,
   user?: User
 }) => {
-  return <div className={c('')} style={{
-    backgroundColor: "var(--cds-layer-01)",
-    display: "flex",
-    alignItems: "center",
-    padding: "1rem",
-    gap: "1rem"
-  }}>
+  return <div className={c('flex items-center p-[16px] pb-[14px] gap-[1rem] bg-layer-01', 'border-solid border-b-2 box-content')}>
     <IconButton onClick={props.onBurgerClick}>
       {props.sidebarOpen ?
         <Close size={32}/>
@@ -39,8 +33,8 @@ export const Header = ({title, ...props}: {
           backgroundColor: "var(--cds-layer-01)",
           boxShadow: "0 2px 6px 0 rgba(0,0,0,.2)"
         }}>
-          <Button kind={'ghost'} size={'sm'}>{props.user.email}</Button>
-          <Button kind={'ghost'} size={'sm'} onClick={props.onLogout}>Logout</Button>
+          <Button className={'w-full'} kind={'ghost'} size={'sm'}>{props.user.email}</Button>
+          <Button className={'w-full'} kind={'ghost'} size={'sm'} onClick={props.onLogout}>Logout</Button>
         </div>
       </DropdownOnClick>
     }
