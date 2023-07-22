@@ -3,7 +3,6 @@
 import {Button} from "@carbon/react";
 import {DropdownOnClick, DropdownOnHover} from "@/_components/basic/Dropdown";
 import {IconButton} from "@/_components/carbon/IconButton";
-import styles from "@/_components/carbon/styles.module.css";
 import {User} from "@carbon/icons-react";
 import Link from "next/link";
 
@@ -41,7 +40,11 @@ export default function Page() {
             </IconButton>
           </>}
         >
-          <div className={styles.dropdownContainer}>
+          <div style={{
+            display: "grid",
+            backgroundColor: "var(--cds-layer-01)",
+            boxShadow: "0 2px 6px 0 rgba(0,0,0,.2)"
+          }}>
             <Button kind={'ghost'} size={'sm'}>nhan.nguyen@uac.edu.au</Button>
             <Button kind={'ghost'} size={'sm'}>Logout</Button>
           </div>
@@ -56,7 +59,11 @@ export default function Page() {
             </IconButton>
           </>}
         >
-          <div className={styles.dropdownContainer}>
+          <div style={{
+            display: "grid",
+            backgroundColor: "var(--cds-layer-01)",
+            boxShadow: "0 2px 6px 0 rgba(0,0,0,.2)"
+          }}>
             <Button kind={'ghost'} size={'sm'}>nhan.nguyen@uac.edu.au</Button>
             <Button kind={'ghost'} size={'sm'}>Logout</Button>
           </div>

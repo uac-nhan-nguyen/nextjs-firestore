@@ -1,5 +1,5 @@
 'use client'
-import {UIShell} from "@/_components/carbon/UIShell";
+import {UIShell} from "@/_components/ui-shell/UIShell";
 import {useUser} from "@/hooks/useUser";
 import {PropsWithChildren, useEffect} from "react";
 import {useRouter} from 'next/navigation'
@@ -15,7 +15,7 @@ const SIDEBAR_MENUS: {
 ]
 
 export default function Layout({children}: PropsWithChildren) {
-  const {user} = useUser();
+  const {user, signOut} = useUser();
   const router = useRouter()
 
   useEffect(() => {
@@ -37,6 +37,7 @@ export default function Layout({children}: PropsWithChildren) {
              user={user && {
                email: user.email || undefined
              } || undefined}
+             onLogout={signOut}
              sidebar={<>
                {SIDEBAR_MENUS.map(i => {
                  return <Link key={i.href} href={i.href}>

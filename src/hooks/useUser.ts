@@ -3,7 +3,11 @@ import { signInWithEmailAndPassword, signOut as firebaseSignOut, sendPasswordRes
 import { useEffect, useState } from "react";
 
 
-export const useUser = (): { user: User | null | undefined, loading: boolean } => {
+export const useUser = (): {
+  user: User | null | undefined,
+  loading: boolean ,
+  signOut: () => Promise<[string?]>,
+} => {
   const [user, setUser] = useState<User | null | undefined>(undefined);
   useEffect(() => {
     auth.onAuthStateChanged((value) => {
@@ -12,7 +16,11 @@ export const useUser = (): { user: User | null | undefined, loading: boolean } =
     });
   })
 
-  return { user, loading: user === undefined };
+  return {
+    user,
+    signOut,
+    loading: user === undefined,
+  };
 }
 
 export const signIn = async (email: string, password: string): Promise<[UserCredential?, string?]> => {
@@ -65,7 +73,7 @@ export const resetPassword = async (email: string): Promise<[string?]> => {
   }
 }
 
-export const signOut = async () => {
+export const signOut = async () : Promise<[string?]> => {
   try {
     await firebaseSignOut(auth);
     return [];
