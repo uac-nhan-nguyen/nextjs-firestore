@@ -9,6 +9,7 @@ module.exports = {
   theme: {
     // https://v10.carbondesignsystem.com/guidelines/color/usage/
     colors: {
+      'transparent': "transparent",
       'background': "var(--cds-background)",
       'background-active': "var(--cds-background-active)",
       'background-brand': "var(--cds-background-brand)",
