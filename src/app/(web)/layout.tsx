@@ -1,12 +1,12 @@
 import '@/app/(web)/globals.css'
+import Script from "next/script";
 
 
-export default function RootLayout({
-  children,
-}: {
+export default function RootLayout(props: {
   children: React.ReactNode
 }) {
-  return (
-      <div>{children}</div>
-  )
+  return <>
+    {props.children}
+    <Script src="https://cdn.tailwindcss.com"/>
+  </>
 }

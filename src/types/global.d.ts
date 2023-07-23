@@ -1,4 +1,4 @@
-import {PropsWithChildren, type ReactElement} from 'react'
+import type {PropsWithChildren, ReactElement, ReactNode} from 'react'
 import "@carbon/react";
 
 declare module '@carbon/react' {
@@ -22,5 +22,9 @@ declare module '@carbon/react' {
   export const MenuItem: (props: {
     label: string,
     disabled?: boolean,
+  }) => ReactElement
+
+  export const Tag: (props: {
+    children: ReactNode,
   }) => ReactElement
 }

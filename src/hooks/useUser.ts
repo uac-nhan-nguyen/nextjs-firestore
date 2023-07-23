@@ -1,5 +1,14 @@
 import { auth } from "@/firebase/config";
-import { signInWithEmailAndPassword, signOut as firebaseSignOut, sendPasswordResetEmail, createUserWithEmailAndPassword, type UserCredential, User } from 'firebase/auth'
+import {
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword,
+  type UserCredential,
+  User,
+  setPersistence,
+  browserLocalPersistence
+} from 'firebase/auth'
 import { useEffect, useState } from "react";
 
 
@@ -11,7 +20,6 @@ export const useUser = (): {
   const [user, setUser] = useState<User | null | undefined>(undefined);
   useEffect(() => {
     auth.onAuthStateChanged((value) => {
-      console.log('USER', user)
       setUser(value);
     });
   })
@@ -24,6 +32,8 @@ export const useUser = (): {
 }
 
 export const signIn = async (email: string, password: string): Promise<[UserCredential?, string?]> => {
+
+  await setPersistence(auth, browserLocalPersistence)
   try {
     const result = await signInWithEmailAndPassword(auth, email, password)
     return [result];

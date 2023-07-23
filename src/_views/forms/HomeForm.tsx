@@ -1,24 +1,26 @@
-import { TextInput, FluidForm, Button, TextArea, Form } from '@carbon/react'
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import {TextInput, Tag, FluidForm, Button, TextArea, Form} from '@carbon/react'
+import {useEffect, useState} from 'react'
+import {useForm} from 'react-hook-form'
 
 type Inputs = {
-  title: string
-  description: string
+  title?: string
+  description?: string
 }
 
 export default function HomeForm(props: {
-  data: Inputs,
+  slug: string,
+  fetch: () => Promise<Inputs>,
   onSubmit: (data: Inputs) => Promise<void>,
   onCancel: () => void,
 }) {
   const {
     register: _register,
     handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
+    reset,
+    formState: {errors},
   } = useForm<Inputs>()
+
+  const [initialData, setInitialData] = useState<Inputs | undefined>(undefined)
 
   const register = (name: keyof Inputs) => ({
     ..._register(name),
@@ -26,9 +28,23 @@ export default function HomeForm(props: {
   })
 
   useEffect(() => {
-  }, [props.data])
+    if (initialData) {
+      reset(initialData);
+    }
+  }, [initialData])
+
+  useEffect(() => {
+    props.fetch()
+      .then(data => {
+        setInitialData(data)
+      })
+
+  }, [])
 
   return <>
+    <p>Path: <Tag>{props.slug}</Tag></p>
+
+    <h2>Edit content</h2>
     <Form onSubmit={handleSubmit((data) => {
       props.onSubmit(data);
     })}>
