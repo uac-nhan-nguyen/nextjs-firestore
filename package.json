@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/carbon__icons-react": "^11.20.0",
+    "@types/json-schema": "^7.0.12",
     "encoding": "^0.1.13",
     "raw-loader": "^4.0.2",
     "sass": "^1.63.6"
